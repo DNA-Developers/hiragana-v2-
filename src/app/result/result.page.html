@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title text-center>
+      Results
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card color="light">
+    <ion-card-content text-center>
+      <div *ngFor="let result of results">
+        <ng-container *ngIf="result.incorrect > 0; else elseTemplate">
+          <h1>Results</h1>
+          <div>
+            <ion-item id="title" color="light">
+              <ion-label><h1>Score:</h1></ion-label>
+              <ion-badge color="tertiary" slot="end">{{ result.correct / result.count | percent}}</ion-badge>
+            </ion-item>
+          </div>
+          <ion-item color="light">
+            <ion-label><h1>Missed hiragana:</h1> <small>{{result.incorrectHiragana}}.</small></ion-label>
+          </ion-item>
+          <ion-button color="tertiary" size="small" [routerLink]="['/home/tabs/basic/quiz']">
+            <p>Quiz Page</p>
+          </ion-button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <h1>Results</h1>
+          <div>
+            <ion-item id="title" color="light">
+              <ion-label><h1>Score:</h1></ion-label>
+              <ion-badge color="tertiary" slot="end">{{ result.correct / result.count | percent}}</ion-badge>
+            </ion-item>
+          </div>
+          <ion-item color="light" text-center>
+            <ion-label><h1>Perfect Score!</h1></ion-label>
+          </ion-item>
+          <ion-button color="tertiary" size="small" [routerLink]="['/home/tabs/basic/quiz']">
+            <p>Quiz Page</p>
+          </ion-button>
+        </ng-template>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

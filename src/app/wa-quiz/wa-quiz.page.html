@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tabs/basic/quiz"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Basic Quiz
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="loaded; else loading">
+    <ng-container *ngFor="let char of list;">
+      <div id="progress" text-center>
+        <ion-label color="light">Progress</ion-label>
+        <ion-progress-bar color="tertiary" [value]="show"></ion-progress-bar>
+        <ion-label color="light">{{value | percent}}</ion-label>
+      </div>
+      <div id="content" class="ion-margin-top">
+        <ion-card color="light" text-center>
+          <ion-card-content>
+            <ion-text color="tertiary">
+              <p>Please choose the correct character</p>
+              <h1>{{char.romanji}}</h1>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+        <ion-button color="tertiary" (click)="choose(char.choices[0],char.romanji, char.hiragana)" expand="block"
+          class="ion-margin-top ion-margin-bottom">
+          <ion-text color="light">
+            <h1>{{char.display[0]}}</h1>
+          </ion-text>
+        </ion-button>
+        <ion-button color="light" (click)="choose(char.choices[1],char.romanji, char.hiragana)" expand="block"
+          class="ion-margin-bottom">
+          <ion-text color="tertiary">
+            <h1>{{char.display[1]}}</h1>
+          </ion-text>
+        </ion-button>
+        <ion-button color="tertiary" (click)="choose(char.choices[2],char.romanji, char.hiragana)" expand="block"
+          class="ion-margin-bottom">
+          <ion-text color="light">
+            <h1>{{char.display[2]}}</h1>
+          </ion-text>
+        </ion-button>
+        <ion-button color="tertiary" (click)="choose(char.choices[3],char.romanji, char.hiragana)" expand="block"
+          class="ion-margin-bottom">
+          <ion-text color="light">
+            <h1>{{char.display[3]}}</h1>
+          </ion-text>
+        </ion-button>
+      </div>
+    </ng-container>
+  </div>
+  <ng-template #loading>
+    <ion-spinner color="light" name="crescent"></ion-spinner>
+  </ng-template>
+</ion-content>

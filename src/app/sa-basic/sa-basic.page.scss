@@ -1,0 +1,187 @@
+
+ion-spinner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.card{
+    top: 35%;
+    left: 46.88%;
+    cursor: pointer;
+    width: 350px;
+    height: 350px;
+    transition: transform .2s linear;
+    transform: translate(-50%,-50%);
+
+}
+
+@media(max-width: 400px){
+    .card{
+     left: 45.75%;
+    }
+ }
+
+.front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.front, .back{
+ width: 100%;
+ height: 100%;
+ overflow: hidden;
+ backface-visibility: hidden;
+ position: absolute;
+ transition: transform .2s linear;
+}
+
+.front{
+    transform:  perspective(600px) rotateY(0deg);
+}
+
+.frontCard{
+    animation-name: example;
+    animation-duration: .5s;
+    transform: translate(-50%,-50%);
+
+}
+
+.backCard{
+    animation-name: example;
+    animation-duration: .5s;
+    transform: translate(-50%,-50%);
+
+}
+
+@keyframes example {
+    0% {transform: translate(0, 0)}
+    50% {  transform:  perspective(600px) rotateY(-180deg);
+    }
+    100%{
+        transform: translate(-50%,-50%);
+
+    }
+  }
+.back{
+    transform:  perspective(600px) rotateY(180deg);
+    background: #7044ff;
+}
+
+#hiragana{
+    font-size: 7rem;
+}
+
+
+
+.frontFlip{
+    transform:  perspective(600px) rotateY(-180deg);
+}
+.backFlip{
+    transform:  perspective(600px) rotateY(0deg);
+}
+
+ion-icon{
+    font-size: 2.5rem;
+}
+
+#vocabulary, #translation {
+    font-size: 1.2rem;
+}
+
+#romaji{
+    font-size: 3rem;
+}
+
+#hint{
+    font-size: .8rem;
+}
+
+@media (min-width: 780px) {
+    .card {
+      top: 38%;
+      left: 49%;
+      width: 62vw;
+      height: 48vh;
+    }
+    ion-toolbar{
+      height: 5.5rem;
+      display: flex;
+    }
+    ion-title{
+      font-size: 2rem;
+      justify-self: center;
+      align-self: center;
+    }
+    ion-icon {
+      font-size: 4.9rem;
+    }
+    #romaji {
+      font-size: 4rem;
+    }
+    #hint {
+      font-size: 1.9rem;
+    }
+    ion-back-button {
+      font-size: 1.8rem;
+    }
+    #vocabulary{
+      font-size: 2.5rem;
+    }
+  
+    #translation{
+      font-size: 2.5rem;
+    }
+    ion-label h1{
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 650px) and (max-width: 770px) {
+    .card {
+      top: 38%;
+      left: 48.5%;
+      width: 60vw;
+      height: 45vh;
+    }
+    #vocabulary{
+      font-size: 1.7rem;
+    }
+  
+    #translation{
+      font-size: 1.7rem;
+    }
+    ion-icon {
+      font-size: 4rem;
+    }
+    #romaji {
+      font-size: 3.1rem;
+    }
+    #hint {
+      font-size: 1.2rem;
+    }
+    ion-toolbar{
+      height: 4.8rem;
+      display: flex;
+    }
+    ion-title{
+      font-size: 2rem;
+      justify-self: center;
+      align-self: center;
+    }
+    ion-back-button {
+      font-size: 1.8rem;
+    }
+    ion-label h1{
+      font-size: 2rem;
+    }
+  }
+  

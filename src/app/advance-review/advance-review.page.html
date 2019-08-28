@@ -1,0 +1,140 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home/tabs/advanced"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        Advanced Review
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div *ngIf="loaded; else loading">
+      <ng-container *ngFor="let char of list;">
+        <div id="progress" text-center>
+          <ion-label color="light">Progress</ion-label>
+          <ion-progress-bar color="tertiary" [value]="show"></ion-progress-bar>
+          <ion-label color="light">{{value | percent}}</ion-label>
+        </div>
+        <ng-container *ngIf="incorrect; else elseTemplate">
+          <div id="content" class="ion-margin-top">
+            <ion-card color="light" text-center>
+              <ion-card-content>
+                <ion-text color="tertiary">
+                  <p>Please choose the correct character</p>
+                  <h1>{{char.hiragana}}</h1>
+                </ion-text>
+              </ion-card-content>
+            </ion-card>
+            <ng-container *ngIf="char.choices[0] !== char.romanji; else first">
+              <ion-button color="danger" (click)="choose(char.choices[0],char.romanji)" expand="block"
+                class="ion-margin-top ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[0]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-container>
+            <ng-template #first>
+              <ion-button color="success" (click)="choose(char.choices[0],char.romanji)" expand="block"
+                class="ion-margin-top ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[0]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-template>
+  
+            <ng-container *ngIf="char.choices[1] !== char.romanji; else second">
+              <ion-button color="danger" (click)="choose(char.choices[1],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[1]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-container>
+            <ng-template #second>
+              <ion-button color="success" (click)="choose(char.choices[1],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[1]}} </h1>
+                </ion-text>
+              </ion-button>
+            </ng-template>
+            <ng-container *ngIf="char.choices[2] !== char.romanji; else third">
+              <ion-button color="danger" (click)="choose(char.choices[2],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[2]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-container>
+            <ng-template #third>
+              <ion-button color="success" (click)="choose(char.choices[2],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[2]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-template>
+  
+            <ng-container *ngIf="char.choices[3] !== char.romanji; else fourth">
+              <ion-button color="danger" (click)="choose(char.choices[3],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[3]}} </h1>
+                </ion-text>
+              </ion-button>
+            </ng-container>
+            <ng-template #fourth>
+              <ion-button color="success" (click)="choose(char.choices[3],char.romanji)" expand="block"
+                class="ion-margin-bottom">
+                <ion-text color="light">
+                  <h1>{{char.choices[3]}}</h1>
+                </ion-text>
+              </ion-button>
+            </ng-template>
+  
+          </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div id="content" class="ion-margin-top">
+            <ion-card color="light" text-center>
+              <ion-card-content>
+                <ion-text color="tertiary">
+                  <p>Please choose the correct romaji</p>
+                  <h1>{{char.hiragana}}</h1>
+                </ion-text>
+              </ion-card-content>
+            </ion-card>
+            <ion-button color="tertiary" (click)="choose(char.choices[0],char.romanji)" expand="block"
+              class="ion-margin-top ion-margin-bottom">
+              <ion-text color="light">
+                <h1>{{char.choices[0]}}</h1>
+              </ion-text>
+            </ion-button>
+            <ion-button color="light" (click)="choose(char.choices[1],char.romanji)" expand="block"
+              class="ion-margin-bottom">
+              <ion-text color="tertiary">
+                <h1>{{char.choices[1]}}</h1>
+              </ion-text>
+            </ion-button>
+            <ion-button color="tertiary" (click)="choose(char.choices[2],char.romanji)" expand="block"
+              class="ion-margin-bottom">
+              <ion-text color="light">
+                <h1>{{char.choices[2]}}</h1>
+              </ion-text>
+            </ion-button>
+            <ion-button color="tertiary" (click)="choose(char.choices[3],char.romanji)" expand="block"
+              class="ion-margin-bottom">
+              <ion-text color="light">
+                <h1>{{char.choices[3]}}</h1>
+              </ion-text>
+            </ion-button>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+    <ng-template #loading>
+      <ion-spinner color="light" name="crescent"></ion-spinner>
+    </ng-template>
+  </ion-content>

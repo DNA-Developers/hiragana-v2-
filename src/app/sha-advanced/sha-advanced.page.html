@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home/tabs/advanced/study"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        Study
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-item text-center class="ion-margin-top" lines="full">
+      <ion-label color="light">
+        <h1>Romaji:</h1>
+        <h1>sha-sho</h1>
+      </ion-label>
+    </ion-item>
+    <ng-container *ngIf="loaded; else loading">  
+      <ion-card color="light" class="card" [ngClass]="{'frontCard': front, 'backCard': !front}" *ngFor="let char of list">
+      <div class="front" [ngClass]="{'frontFlip': front}" (click)="flip()">
+        <div>
+          <h1 id="romaji">{{char.romanji}}</h1>
+        </div>
+        <div>
+          <small id="hint">(Tap the card to see the backside)</small>
+        </div>
+        <div *ngIf="(counter < 1); else both">
+          <ion-button (click)="next()" fill="none">
+            <ion-icon slot="icon-only" name="arrow-round-forward"></ion-icon>
+          </ion-button>
+        </div>
+        <ng-template #both>
+          <ng-container *ngIf="(counter >= 2); else two">
+            <ion-button (click)="back()" fill="none">
+              <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+            </ion-button>
+          </ng-container>
+          <ng-template #two>
+            <div>
+              <ion-button (click)="back()" fill="none">
+                <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+              </ion-button>
+              <ion-button (click)="next()" fill="none">
+                <ion-icon slot="icon-only" name="arrow-round-forward"></ion-icon>
+              </ion-button>
+            </div>
+          </ng-template>
+        </ng-template>
+      </div>
+      <div class="back" [ngClass]="{'backFlip': front}" (click)="flip()">
+        <ion-label color="light">
+          <h1 id="hiragana">{{char.hiragana}}</h1>
+        </ion-label>
+        <ion-label color="light">
+          <ion-icon slot="start" name="megaphone" (click)="playSound()"></ion-icon>
+        </ion-label>
+        <ion-label color="light">
+          <h3 id="vocabulary">Vocabulary: {{char.exampleSentence}}</h3>
+        </ion-label>
+        <ion-label color="light">
+          <h3 id="translation">English Translation: {{char.translation}}</h3>
+        </ion-label>
+      </div>
+    </ion-card>
+    </ng-container>
+    <ng-template #loading>
+      <ion-spinner color="light" name="crescent"></ion-spinner>
+    </ng-template>
+  </ion-content>
